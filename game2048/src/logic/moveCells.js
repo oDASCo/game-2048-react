@@ -31,9 +31,10 @@ const moveCells = (initCells, direction) => {
         }
     }
     rotateMatrixToDirection(matrix, direction);
+
     for (let y = 0; y < 4; y++) {
         for (let x = 0; x < 4; x++) {
-            if ([0, 1, 2, 3].includes(matrix[y][x])) continue;
+            if (matrix[y][x] === 0) continue;
             matrix[y][x].x = x;
             matrix[y][x].y = y;
 
@@ -44,10 +45,40 @@ const moveCells = (initCells, direction) => {
 };
 
 function rotateMatrixFromDirection(matrix, direction) {
-
+switch (direction){
+    case directions.LEFT:
+        matrixRotate(matrix);
+        break;
+    case directions.DOWN:
+        matrixRotate(matrix);
+        matrixRotate(matrix);
+        break;
+    case directions.RIGHT:
+        matrixRotate(matrix);
+        matrixRotate(matrix);
+        matrixRotate(matrix);
+        break;
+    default:
+        break;
+}
 }
 function rotateMatrixToDirection(matrix, direction) {
-
+    switch (direction){
+        case directions.LEFT:
+            matrixRotate(matrix);
+            matrixRotate(matrix);
+            matrixRotate(matrix);
+            break;
+        case directions.DOWN:
+            matrixRotate(matrix);
+            matrixRotate(matrix);
+            break;
+        case directions.RIGHT:
+            matrixRotate(matrix);
+            break;
+        default:
+            break;
+    }
 }
 
 
