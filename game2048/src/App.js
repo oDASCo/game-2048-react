@@ -41,10 +41,10 @@ class App extends Component {
         document.removeEventListener('keypress', this.handleKeyPress)
     }
 
-    handleKeyPress = (event) => {
+    handleKeyPress = async event => {
         if (['KeyA', 'KeyS', 'KeyD', 'KeyW'].includes(event.code))
             this.setState(state => ({...state, cells: moveCells(state.cells, this.mapKeyCodeToDirection[event.code])}));
-
+        await delay(100)
         this.setState(state => ({...state, cells: removeAndIncreaseCells(state.cells)}));
 
         this.setState(state => ({...state, cells: populateField(state.cells)}));
@@ -64,5 +64,5 @@ class App extends Component {
         )
     }
 }
-
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 export default App;
