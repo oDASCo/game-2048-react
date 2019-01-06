@@ -4,7 +4,7 @@ import Field from 'UI/Field'
 import ControllPanel from 'UI/ControllPanel'
 import Score from 'UI/Score'
 import Button from 'UI/Button'
-import {initCells, moveCells, directions} from 'logic'
+import {initCells, moveCells, directions, removeAndIncreaseCells, populateField} from 'logic'
 
 class App extends Component {
 
@@ -44,6 +44,10 @@ class App extends Component {
     handleKeyPress = (event) => {
         if (['KeyA', 'KeyS', 'KeyD', 'KeyW'].includes(event.code))
             this.setState(state => ({...state, cells: moveCells(state.cells, this.mapKeyCodeToDirection[event.code])}));
+
+        this.setState(state => ({...state, cells: removeAndIncreaseCells(state.cells)}));
+
+        this.setState(state => ({...state, cells: populateField(state.cells)}));
     }
 
 
